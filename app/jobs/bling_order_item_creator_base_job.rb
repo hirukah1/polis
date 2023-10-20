@@ -17,7 +17,7 @@ class BlingOrderItemCreatorBaseJob < ApplicationJob
 
       if BlingOrderItem.exists?(bling_order_id: order_id)
         bling_order_items = BlingOrderItem.where(bling_order_id: order_id)
-        if order_data['situacao']['id'] != bling_order_items[0].situation_id
+        if order_data['situacao']['id'] != bling_order_items[0].situation_id.to_i
           bling_order_items.each do |bling_order_item|
             bling_order_item.update(situation_id: order_data['situacao']['id'])
           end
